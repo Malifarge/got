@@ -4,11 +4,11 @@ class Character extends React.Component {
 	render() {
 		return(
             
-            <>
+            <article>
             <img src={this.props.image} alt={this.props.name} />
-            <p>{this.props.name}</p>
+            <h2>{this.props.name}</h2>
             <p>{this.props.title}</p>
-            </>
+            </article>
 			
 		)
 	}

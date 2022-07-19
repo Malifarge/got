@@ -1,5 +1,6 @@
 import React from 'react'
 import Character from './components/characters'
+import './style/global.css'
 
 class App extends React.Component {
 
@@ -23,10 +24,12 @@ class App extends React.Component {
 		return(
 			<>
       <h1>Game of thrones</h1>
-       {this.state.characters.map((character) => (
+      <section>
+      {this.state.characters.map((character) => (
          <Character key={character.id} name={character.fullName} title={character.title} image={character.imageUrl}/>
         ))}
-
+      </section>
+       
       </>
 		)
 	}
