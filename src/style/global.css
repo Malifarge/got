@@ -13,7 +13,7 @@ div{
     height: 50%;
     background-repeat: no-repeat;
     background-position: top, center;
-    background-size: cover;
+    background-size: contain;
 }
 
 section{
