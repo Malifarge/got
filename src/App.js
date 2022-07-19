@@ -23,7 +23,10 @@ class App extends React.Component {
 		return(
 			<>
       <h1>Game of thrones</h1>
-      <Character/>
+       {this.state.characters.map((character) => (
+         <Character key={character.id} name={character.fullName} title={character.title} image={character.imageUrl}/>
+        ))}
+
       </>
 		)
 	}
