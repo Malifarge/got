@@ -1,4 +1,5 @@
 import React from 'react'
+import Character from './components/characters'
 
 class App extends React.Component {
 
@@ -20,7 +21,10 @@ class App extends React.Component {
 
 	render() {
 		return(
-			<h1>Game of thrones</h1>
+			<>
+      <h1>Game of thrones</h1>
+      <Character/>
+      </>
 		)
 	}
 }
