@@ -92,7 +92,6 @@ class App extends React.Component {
          favoris={this.handleFavoriteClick}
          characterInfo={character} 
          buttonName="Favoris"
-         Myclass={character.myclass}
          />
         ))}
       </section>
@@ -108,7 +107,6 @@ class App extends React.Component {
          favoris={this.handleUnfavoriteClick}
          characterInfo={favorite}
          buttonName="Enlever"
-         Myclass="notfavorite"
          />
         ))}
       </section>
