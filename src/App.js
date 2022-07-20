@@ -13,7 +13,7 @@ class App extends React.Component {
       characters: [],
       favorites: [],
       continents: [],
-      onglet : true
+      onglet : true,
     }
   }
 
@@ -44,9 +44,10 @@ class App extends React.Component {
     this.setState({
       favorites: favoritesBis
     })
-    }
-    myArticle = document.getElementById(`${character.id}`)
+    myArticle = document.getElementById(character.id)
     myArticle.classList.add("favoris")
+    }
+
   }
 
   handleUnfavoriteClick = (favorite) =>{
@@ -70,12 +71,7 @@ class App extends React.Component {
       this.setState({
         onglet : false
       })
-      this.state.continents.map((continent)=>{
-        console.log(continent.name);
-      })
     }
-  
-
 	render() {
 		return(
 			<>
@@ -85,7 +81,8 @@ class App extends React.Component {
 
       {this.state.onglet ? (
       <><section>
-      {this.state.characters.map((character) => (
+      {
+      this.state.characters.map((character) => (
          <Character 
          key={character.id}
          id={character.id} 
@@ -95,6 +92,7 @@ class App extends React.Component {
          favoris={this.handleFavoriteClick}
          characterInfo={character} 
          buttonName="Favoris"
+         Myclass={character.myclass}
          />
         ))}
       </section>
@@ -110,6 +108,7 @@ class App extends React.Component {
          favoris={this.handleUnfavoriteClick}
          characterInfo={favorite}
          buttonName="Enlever"
+         Myclass="notfavorite"
          />
         ))}
       </section>

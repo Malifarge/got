@@ -4,7 +4,7 @@ class Character extends React.Component {
 	render() {
 		return(
             
-            <article id={this.props.id}>
+            <article id={this.props.id} className={this.props.Myclass}>
             <div className='image' style={{ 
             backgroundImage: `url(${this.props.image})` 
             }}></div>
