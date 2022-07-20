@@ -10,6 +10,7 @@ class Character extends React.Component {
             }}></div>
             <h2>{this.props.name}</h2>
             <p>{this.props.title}</p>
+            <button onClick={() => this.props.favoris(this.props.characterInfo)}>{this.props.buttonName}</button>
             </article>
 			
 		)
