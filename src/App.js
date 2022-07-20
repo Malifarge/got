@@ -1,6 +1,9 @@
 import React from 'react'
 import Character from './components/characters'
+import Continent from './components/Continent'
 import './style/global.css'
+
+let myArticle
 
 class App extends React.Component {
 
@@ -9,7 +12,9 @@ class App extends React.Component {
 
     this.state = {
       characters: [],
-      favorites: []
+      favorites: [],
+      Continents: [],
+      onglet : true
     }
   }
 
@@ -18,6 +23,11 @@ class App extends React.Component {
     const data = await gotCharacters.json()
     this.setState({
       characters: data
+    })
+    const gotContinents = await fetch("https://thronesapi.com/api/v2/Continents")
+    const dataContinents = await gotContinents.json()
+    this.setState({
+      Continents: dataContinents
     })
   }
 
@@ -36,6 +46,8 @@ class App extends React.Component {
       favorites: favoritesBis
     })
     }
+    myArticle = document.getElementById(`${character.id}`)
+    myArticle.classList.add("favoris")
   }
 
   handleUnfavoriteClick = (favorite) =>{
@@ -45,6 +57,23 @@ class App extends React.Component {
     this.setState({
       favorites: Unfavorite
     })
+    myArticle = document.getElementById(favorite.id)
+    myArticle.classList.remove("favoris")
+    }
+
+    handleClickCharacters = () =>{
+      this.setState({
+        onglet : true
+      })
+    }
+
+    handleClickContinents = () =>{
+      this.setState({
+        onglet : false
+      })
+      this.state.Continents.map((continent)=>{
+        console.log(continent.name);
+      })
     }
   
 
@@ -52,10 +81,14 @@ class App extends React.Component {
 		return(
 			<>
       <h1>Game of thrones</h1>
-      <section>
+
+      <nav className='flex'> <button onClick={this.handleClickCharacters}>Characters</button> <button onClick={this.handleClickContinents}>Continents</button></nav>
+
+      {this.state.onglet ? (<><section>
       {this.state.characters.map((character) => (
          <Character 
-         key={character.id} 
+         key={character.id}
+         id={character.id} 
          name={character.fullName} 
          title={character.title} 
          image={character.imageUrl}
@@ -69,7 +102,8 @@ class App extends React.Component {
       <section>
       {this.state.favorites.map((favorite) => (
          <Character 
-         key={favorite.id} 
+         key={favorite.id}
+         id={`${favorite.id}F`}
          name={favorite.fullName} 
          title={favorite.title} 
          image={favorite.imageUrl}
@@ -79,7 +113,14 @@ class App extends React.Component {
          />
         ))}
       </section>
-       
+      </> ):(<section>
+        {this.state.Continents.map((continent)=>{
+          <Continent 
+          infos={continent.name}
+          />
+        })}
+      </section>)}
+      
       </>
 		)
 	}
