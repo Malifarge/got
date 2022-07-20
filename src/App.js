@@ -1,6 +1,5 @@
 import React from 'react'
 import Character from './components/characters'
-import Continent from './components/Continent'
 import './style/global.css'
 
 let myArticle
@@ -13,7 +12,7 @@ class App extends React.Component {
     this.state = {
       characters: [],
       favorites: [],
-      Continents: [],
+      continents: [],
       onglet : true
     }
   }
@@ -27,7 +26,7 @@ class App extends React.Component {
     const gotContinents = await fetch("https://thronesapi.com/api/v2/Continents")
     const dataContinents = await gotContinents.json()
     this.setState({
-      Continents: dataContinents
+      continents: dataContinents
     })
   }
 
@@ -71,7 +70,7 @@ class App extends React.Component {
       this.setState({
         onglet : false
       })
-      this.state.Continents.map((continent)=>{
+      this.state.continents.map((continent)=>{
         console.log(continent.name);
       })
     }
@@ -84,7 +83,8 @@ class App extends React.Component {
 
       <nav className='flex'> <button onClick={this.handleClickCharacters}>Characters</button> <button onClick={this.handleClickContinents}>Continents</button></nav>
 
-      {this.state.onglet ? (<><section>
+      {this.state.onglet ? (
+      <><section>
       {this.state.characters.map((character) => (
          <Character 
          key={character.id}
@@ -113,13 +113,15 @@ class App extends React.Component {
          />
         ))}
       </section>
-      </> ):(<section>
-        {this.state.Continents.map((continent)=>{
-          <Continent 
-          infos={continent.name}
-          />
+      </> 
+      ):(
+        <section className='continent'>
+        {this.state.continents.map((continent) => {
+            return(<p key={continent.name}>{continent.name}</p>)
         })}
-      </section>)}
+      </section>
+      )
+      }
       
       </>
 		)
