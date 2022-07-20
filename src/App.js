@@ -20,12 +20,10 @@ class App extends React.Component {
   async componentDidMount(){
     const gotCharacters = await fetch("https://thronesapi.com/api/v2/Characters")
     const data = await gotCharacters.json()
-    this.setState({
-      characters: data
-    })
     const gotContinents = await fetch("https://thronesapi.com/api/v2/Continents")
     const dataContinents = await gotContinents.json()
     this.setState({
+      characters: data,
       continents: dataContinents
     })
   }
